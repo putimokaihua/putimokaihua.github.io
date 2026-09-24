@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>陈匡时 · 个人主页 / Chen Kuangshi — Personal Site</title>
+<meta name="description" content="陈匡时（Chen Kuangshi）的个人主页：上海交通大学日语系学生，中日翻译与国际传播方向，学术项目与个人经历一览。Personal homepage of Chen Kuangshi.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23A6302B'/%3E%3Ctext x='32' y='42' font-size='30' text-anchor='middle' fill='%23F6F3EC' font-family='serif'%3E匡%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://miaoda.feishu.cn">
+<link href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ===== Design tokens ===== */
+:root{
+  --paper:#F6F3EC;
+  --paper-deep:#EFE9DC;
+  --ink:#2A2823;
+  --ink-soft:#6B655A;
+  --ink-faint:#98907F;
+  --accent:#A6302B;
+  --accent-deep:#8C2622;
+  --line:#DFD7C6;
+  --serif:"Noto Serif SC", "Songti SC", SimSun, serif;
+  --sans:"Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --maxw:720px;
+  --navw:1080px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-weight:400;
+  line-height:1.75;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+/* subtle paper grain */
+body::before{
+  content:"";
+  position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.33 0 0 0 0 0.28 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+
+/* ===== Top bar ===== */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(246,243,236,.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.topbar-inner{
+  max-width:var(--navw);margin:0 auto;padding:0 24px;
+  display:flex;align-items:center;gap:20px;height:60px;
+}
+.brand{display:flex;align-items:baseline;gap:10px;flex:none}
+.brand .cn{font-family:var(--serif);font-weight:900;font-size:20px;letter-spacing:.08em}
+.brand .en{font-size:12px;color:var(--ink-soft);letter-spacing:.14em;text-transform:uppercase}
+.brand .seal{
+  width:22px;height:22px;border-radius:3px;background:var(--accent);color:var(--paper);
+  display:inline-flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:12px;font-weight:700;flex:none;margin-top:2px;
+}
+nav.menu{display:flex;gap:2px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}
+nav.menu::-webkit-scrollbar{display:none}
+nav.menu a{
+  padding:6px 10px;border-radius:6px;font-size:14px;color:var(--ink-soft);white-space:nowrap;
+  transition:color .18s,background .18s;
+}
+nav.menu a:hover{color:var(--ink);background:rgba(166,48,43,.06)}
+nav.menu a.active{color:var(--accent);font-weight:500}
+.langbtn{
+  flex:none;border:1px solid var(--line);background:transparent;color:var(--ink-soft);
+  border-radius:6px;padding:5px 12px;font-size:13px;letter-spacing:.05em;
+  transition:border-color .18s,color .18s,background .18s;
+}
+.langbtn:hover{border-color:var(--accent);color:var(--accent);background:rgba(166,48,43,.05)}
+
+/* ===== Views ===== */
+main{position:relative;z-index:1;min-height:70vh}
+.view{display:none;padding:72px 24px 96px}
+.view.is-active{display:block;animation:viewIn .3s ease both}
+@keyframes viewIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.container{max-width:var(--maxw);margin:0 auto}
+.kicker{font-size:13px;letter-spacing:.22em;color:var(--ink-faint);margin-bottom:14px;font-weight:500}
+
+/* ===== Hero ===== */
+.hero{padding:96px 24px 56px;position:relative}
+.hero-flex{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:clamp(36px,6vw,72px)}
+.hero-portrait{
+  flex:none;width:min(240px,30vw);
+  background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;
+  box-shadow:0 1px 2px rgba(42,40,35,.06),0 10px 28px rgba(42,40,35,.06);
+}
+.hero-portrait img{display:block;width:100%;height:auto;border-radius:6px}
+.hero-text{flex:1;max-width:540px;text-align:left}
+.hero-name{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(2.4rem,5.4vw,3.6rem);
+  letter-spacing:.12em;line-height:1.25;
+}
+.hero-sub{margin-top:22px;font-size:clamp(1rem,2.2vw,1.15rem);color:var(--ink-soft);letter-spacing:.05em}
+.hero-sub b{color:var(--ink);font-weight:500}
+.hero-motto{
+  margin:38px 0 0;max-width:540px;display:flex;align-items:flex-start;gap:18px;
+}
+.hero-motto .quote{font-family:var(--serif);font-size:clamp(1.02rem,2.4vw,1.22rem);color:var(--ink);letter-spacing:.09em;line-height:1.95}
+.hero-motto .quote small{display:block;font-family:var(--sans);font-size:.6em;color:var(--ink-faint);letter-spacing:.18em;margin-top:7px}
+.seal{
+  flex:none;width:52px;height:52px;border-radius:6px;background:var(--accent);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:var(--paper);font-family:var(--serif);font-weight:700;line-height:1;font-size:20px;
+  box-shadow:inset 0 0 0 1px rgba(246,243,236,.25);
+}
+.seal span{display:block;letter-spacing:.02em}
+.hero-rule{max-width:180px;height:1px;background:var(--line);margin:56px auto 0}
+.hero-go{
+  margin-top:38px;display:inline-flex;align-items:center;gap:10px;
+  border:1px solid var(--accent);color:var(--accent);
+  border-radius:999px;padding:10px 26px;font-size:15px;letter-spacing:.08em;
+  transition:background .2s,color .2s;
+}
+.hero-go:hover{background:var(--accent);color:var(--paper)}
+.hero-go svg{width:14px;height:14px}
+
+/* ===== Sections ===== */
+.sec{margin-top:72px}
+.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:30px}
+.sec-head h2{font-family:var(--serif);font-weight:700;font-size:clamp(1.35rem,3.4vw,1.6rem);letter-spacing:.1em}
+.sec-head .line{flex:1;height:1px;background:var(--line)}
+
+/* basic info grid */
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.fact{display:grid;grid-template-columns:120px 1fr;gap:14px;padding:16px 0;border-top:1px solid var(--line)}
+.fact dt{font-size:13px;color:var(--ink-faint);letter-spacing:.14em;padding-top:3px}
+.fact dd{font-size:15px;line-height:1.7}
+.fact dd .note{display:block;color:var(--ink-soft);font-size:13px;margin-top:2px}
+
+/* skill / lang list */
+.langlist{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.langitem{
+  border:1px solid var(--line);border-radius:6px;padding:8px 14px;font-size:13.5px;
+  background:transparent;color:var(--ink);
+}
+.langitem b{display:block;font-weight:500;font-size:14.5px}
+.langitem small{color:var(--ink-soft)}
+
+/* honor list */
+.honors{list-style:none}
+.honors li{
+  display:grid;grid-template-columns:150px 1fr;gap:20px;padding:15px 0;
+  border-top:1px solid var(--line);align-items:baseline;
+}
+.honors li .yr{font-family:var(--serif);font-size:13px;color:var(--accent);letter-spacing:.08em;white-space:nowrap}
+.honors li .txt{font-size:15px}
+.honors li .txt em{font-style:normal;color:var(--ink-faint);font-size:13px}
+
+/* project index entries */
+.proj-index{list-style:none}
+.proj-index li{border-top:1px solid var(--line)}
+.proj-index a{
+  display:grid;grid-template-columns:56px 1fr auto;gap:18px;align-items:center;
+  padding:22px 4px;transition:background .2s;border-radius:8px;
+}
+.proj-index a:hover{background:rgba(166,48,43,.045)}
+.proj-index .no{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--accent);letter-spacing:.05em}
+.proj-index .t b{display:block;font-weight:500;font-size:16.5px;letter-spacing:.03em}
+.proj-index .t small{display:block;color:var(--ink-soft);font-size:13px;margin-top:4px}
+.proj-index .tag{font-size:12px;color:var(--ink-soft);border:1px solid var(--line);border-radius:4px;padding:3px 9px;white-space:nowrap;letter-spacing:.06em}
+.proj-index .arr{color:var(--ink-faint);transition:transform .2s,color .2s}
+.proj-index a:hover .arr{color:var(--accent);transform:translateX(3px)}
+
+/* ===== Project pages ===== */
+.backlink{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;color:var(--ink-soft);margin-bottom:34px;letter-spacing:.06em;transition:color .18s}
+.backlink:hover{color:var(--accent)}
+.backlink svg{width:13px;height:13px}
+.proj-type{
+  display:inline-block;border:1px solid var(--accent);color:var(--accent);
+  font-size:12.5px;letter-spacing:.16em;border-radius:4px;padding:4px 12px;margin-bottom:20px;
+}
+.proj-title{font-family:var(--serif);font-weight:900;font-size:clamp(1.7rem,5vw,2.5rem);letter-spacing:.06em;line-height:1.4}
+.proj-meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.proj-meta .chip{font-size:13px;color:var(--ink-soft);background:var(--paper-deep);border-radius:4px;padding:4px 12px;letter-spacing:.05em}
+.proj-rule{max-width:100%;height:1px;background:var(--line);margin:40px 0}
+.pblock{margin-top:30px}
+.pblock h3{
+  font-family:var(--serif);font-weight:700;font-size:15px;letter-spacing:.16em;color:var(--accent);
+  margin-bottom:12px;
+}
+.pblock p{font-size:15.5px;color:var(--ink);line-height:2}
+.pblock p + p{margin-top:10px}
+.tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:8px}
+.tags span{font-size:12.5px;color:var(--ink-soft);border:1px solid var(--line);border-radius:4px;padding:4px 11px;letter-spacing:.05em}
+.proj-nav{display:flex;justify-content:space-between;gap:16px;margin-top:64px;border-top:1px solid var(--line);padding-top:26px}
+.proj-nav a{display:inline-flex;flex-direction:column;gap:4px;font-size:13.5px;color:var(--ink-soft);transition:color .18s}
+.proj-nav a b{font-size:15px;color:var(--ink);font-weight:500;letter-spacing:.03em;transition:color .18s}
+.proj-nav a:hover,.proj-nav a:hover b{color:var(--accent)}
+.proj-nav .next{text-align:right;align-items:flex-end}
+.proj-nav svg{width:13px;height:13px}
+
+/* ===== Footer ===== */
+footer{
+  position:relative;z-index:1;border-top:1px solid var(--line);background:var(--paper-deep);
+  padding:44px 24px 52px;
+}
+.footer-inner{max-width:var(--navw);margin:0 auto;display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center}
+.footer-brand{display:flex;align-items:center;gap:12px}
+.footer-brand .seal{width:34px;height:34px;font-size:14px;border-radius:5px}
+.footer-brand .t{font-family:var(--serif);font-weight:700;font-size:15px;letter-spacing:.08em}
+.footer-brand .t small{display:block;font-family:var(--sans);font-weight:400;font-size:11px;color:var(--ink-faint);letter-spacing:.16em;margin-top:2px}
+.footer-meta{text-align:right;font-size:13px;color:var(--ink-soft);line-height:1.9}
+.footer-meta a{color:var(--ink);border-bottom:1px solid var(--line);transition:color .18s,border-color .18s}
+.footer-meta a:hover{color:var(--accent);border-color:var(--accent)}
+
+/* ===== Responsive ===== */
+@media (max-width:640px){
+  .topbar-inner{padding:0 16px;height:56px}
+  nav.menu{position:absolute;left:0;right:0;top:56px;background:rgba(246,243,236,.98);border-bottom:1px solid var(--line);padding:8px 16px;display:flex;gap:6px}
+  nav.menu a{font-size:13px;padding:9px 10px;min-height:44px;display:inline-flex;align-items:center}
+  .view{padding:48px 20px 80px}
+  .hero{padding:64px 20px 48px}
+  .hero-flex{flex-direction:column;gap:26px}
+  .hero-portrait{width:min(218px,58vw)}
+  .hero-text{text-align:center;max-width:100%}
+  .hero-motto{margin-left:auto;margin-right:auto;flex-direction:column;gap:12px}
+  .hero-go{margin-left:auto;margin-right:auto}
+  .facts{grid-template-columns:1fr}
+  .honors li{grid-template-columns:1fr;gap:4px}
+  .proj-index a{grid-template-columns:40px 1fr;gap:12px;padding:18px 2px}
+  .proj-index .tag{display:none}
+  .proj-index .arr{display:none}
+  .footer-inner{flex-direction:column;text-align:center}
+  .footer-meta{text-align:center}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Top bar ===== -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#/home" aria-label="Home">
+      <span class="seal">匡</span>
+      <span class="cn" data-i18n="brand.cn">陈匡时</span>
+      <span class="en" data-i18n="brand.en">Chen Kuangshi</span>
+    </a>
+    <nav class="menu" aria-label="Main navigation">
+      <a href="#/home" data-route="home" data-i18n="nav.home">首页</a>
+      <a href="#/project/1" data-route="p1" data-i18n="nav.p1">儿童文集译介</a>
+      <a href="#/project/2" data-route="p2" data-i18n="nav.p2">语言健康检测</a>
+      <a href="#/project/3" data-route="p3" data-i18n="nav.p3">马来西亚实践</a>
+      <a href="#/project/4" data-route="p4" data-i18n="nav.p4">捷克品牌出海</a>
+    </nav>
+    <button class="langbtn" id="langToggle" data-i18n="lang.toggle" aria-label="Switch language">EN</button>
+  </div>
+</header>
+
+<main>
+  <!-- ===== View: Home ===== -->
+  <section class="view is-active" id="view-home" data-view="home">
+    <div class="hero">
+      <div class="hero-flex">
+        <figure class="hero-portrait">
+          <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/G1sWbC33GohNIRxjepScieQJnih" alt="陈匡时证件照" data-i18n-alt="hero.photoAlt" width="720" height="846" loading="lazy">
+        </figure>
+        <div class="hero-text">
+          <h1 class="hero-name" data-i18n="hero.name">陈匡时</h1>
+          <div class="hero-sub" data-i18n="hero.sub">上海交通大学 · <b>日语系</b></div>
+          <div class="hero-motto">
+            <span class="seal" aria-hidden="true"><span>匡</span><span>时</span></span>
+            <span class="quote" data-i18n="hero.motto">与有肝胆人共事，从无字句处读书
+              <small data-i18n="hero.mottoEn">Work with the bold-hearted; read from the unwritten word</small>
+            </span>
+          </div>
+          <a class="hero-go" href="#/project/1">
+            <span data-i18n="hero.go">浏览我的项目经历</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="hero-rule"></div>
+    </div>
+
+    <div class="container">
+      <section class="sec">
+        <div class="sec-head">
+          <h2 data-i18n="home.basic">基本信息</h2><div class="line"></div>
+        </div>
+        <dl class="facts">
+          <div class="fact"><dt data-i18n="f.name">姓名</dt><dd data-i18n="v.name">陈匡时（Chen Kuangshi）</dd></div>
+          <div class="fact"><dt data-i18n="f.univ">院校专业</dt><dd data-i18n="v.univ">上海交通大学 · 日语系</dd></div>
+          <div class="fact"><dt data-i18n="f.birth">出生年月</dt><dd data-i18n="v.birth">2005.4</dd></div>
+          <div class="fact"><dt data-i18n="f.ethnicity">民族</dt><dd data-i18n="v.ethnicity">汉</dd></div>
+          <div class="fact"><dt data-i18n="f.party">政治面貌</dt><dd data-i18n="v.party">预备党员</dd></div>
+          <div class="fact"><dt data-i18n="f.classRole">班级职务</dt><dd data-i18n="v.classRole">团支部书记</dd></div>
+          <div class="fact"><dt data-i18n="f.schoolRole">学院职务</dt><dd data-i18n="v.schoolRole">院级学生会秘书处处长（2025）</dd></div>
+          <div class="fact"><dt data-i18n="f.phone">电话</dt><dd>13661530641</dd></div>
+        </dl>
+      </section>
+
+      <section class="sec">
+        <div class="sec-head">
+          <h2 data-i18n="home.ability">语言与能力</h2><div class="line"></div>
+        </div>
+        <div class="langlist">
+          <div class="langitem"><b data-i18n="a.n1">日语 · N1</b><small data-i18n="a.n1sub">JLPT N1 证书（双项目评测 A）</small></div>
+          <div class="langitem"><b data-i18n="a.jp4">日语专业四级</b><small data-i18n="a.jp4sub">评级「优秀」</small></div>
+          <div class="langitem"><b data-i18n="a.ielts">雅思 8.0</b><small data-i18n="a.ieltsub">首考，阅读、听力满分</small></div>
+          <div class="langitem"><b data-i18n="a.law">法学辅修</b><small data-i18n="a.lawsub">知识产权法方向</small></div>
+          <div class="langitem"><b data-i18n="a.intern">新华社上海分社</b><small data-i18n="a.internsub">实习（2024.12–2025.2）</small></div>
+        </div>
+      </section>
+
+      <section class="sec">
+        <div class="sec-head">
+          <h2 data-i18n="home.honors">荣誉与学生工作</h2><div class="line"></div>
+        </div>
+        <ul class="honors">
+          <li><span class="yr">2024–2025</span><span class="txt" data-i18n="h.1">校优秀学生干部</span></li>
+          <li><span class="yr">2024–2025</span><span class="txt" data-i18n="h.2">本科生 C 等优秀奖学金</span></li>
+          <li><span class="yr">2023</span><span class="txt" data-i18n="h.3">校新生骨干营成员，个人编导光影剧获骨干营成果展示特等奖</span></li>
+          <li><span class="yr">2025</span><span class="txt" data-i18n="h.4">校阳光剧社社长</span></li>
+          <li><span class="yr">2024</span><span class="txt" data-i18n="h.5">「李叔同杯」校园戏剧大赛外国语学院连队学生导演，校总剧组工作人员</span></li>
+          <li><span class="yr"></span><span class="txt" data-i18n="h.6">院级学生会秘书处处长，组织多次劳动教育实践等院级活动</span></li>
+          <li><span class="yr"></span><span class="txt" data-i18n="h.7">一桥大学、关西学院大学交流项目中方代表</span></li>
+          <li><span class="yr">2024</span><span class="txt" data-i18n="h.8">上海交通大学中日青年精英营优秀营员</span></li>
+          <li><span class="yr">2024</span><span class="txt" data-i18n="h.9">上海交通大学新时代中日友好团团员</span></li>
+          <li><span class="yr">2024</span><span class="txt" data-i18n="h.10">「淬火」入党积极分子培训班组长，评为优秀学员</span></li>
+        </ul>
+      </section>
+
+      <section class="sec">
+        <div class="sec-head">
+          <h2 data-i18n="home.projects">学术项目经历</h2><div class="line"></div>
+        </div>
+        <ul class="proj-index">
+          <li>
+            <a href="#/project/1">
+              <span class="no">01</span>
+              <span class="t"><b data-i18n="p1.title">冷战背景下中国儿童文集在日本的译介研究</b><small data-i18n="p1.brief">市级大创项目 · 总负责人</small></span>
+              <span class="tag" data-i18n="p1.tag">中日翻译</span>
+              <svg class="arr" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="#/project/2">
+              <span class="no">02</span>
+              <span class="t"><b data-i18n="p2.title">老年人语言健康智能检测系统研发与应用</b><small data-i18n="p2.brief">学院双创项目 · 项目组成员</small></span>
+              <span class="tag" data-i18n="p2.tag">语言健康</span>
+              <svg class="arr" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="#/project/3">
+              <span class="no">03</span>
+              <span class="t"><b data-i18n="p3.title">新时代中国形象在马来西亚青年群体中的多元传播创新实践</b><small data-i18n="p3.brief">2024 校全球挑战计划 · 项目组成员</small></span>
+              <span class="tag" data-i18n="p3.tag">国际传播</span>
+              <svg class="arr" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="#/project/4">
+              <span class="no">04</span>
+              <span class="t"><b data-i18n="p4.title">新质生产力赋能中国企业品牌出海及跨文化管理困境与对策研究</b><small data-i18n="p4.brief">2025 校全球挑战计划 · 捷克实践团团员</small></span>
+              <span class="tag" data-i18n="p4.tag">品牌出海</span>
+              <svg class="arr" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </section>
+
+  <!-- ===== View: Project 1 ===== -->
+  <section class="view" id="view-project-1" data-view="p1">
+    <div class="container">
+      <a class="backlink" href="#/home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+        <span data-i18n="back.home">返回首页</span>
+      </a>
+      <div class="proj-type" data-i18n="p1.type">市级大学生创新项目</div>
+      <h1 class="proj-title" data-i18n="p1.title">冷战背景下中国儿童文集在日本的译介研究</h1>
+      <div class="proj-meta">
+        <span class="chip" data-i18n="p1.role">总负责人</span>
+        <span class="chip" data-i18n="p1.scope">中日翻译 · 文学传播 · 冷战史</span>
+      </div>
+      <div class="proj-rule"></div>
+      <div class="pblock">
+        <h3 data-i18n="proj.overview">项目概述</h3>
+        <p data-i18n="p1.overview">项目聚焦冷战历史背景下中国儿童文学选集在日本的翻译与传播，考察译介作品、路径与时代语境，探讨文学交流在特殊历史时期所承载的意义。</p>
+      </div>
+      <div class="pblock">
+        <h3 data-i18n="proj.contribution">个人角色</h3>
+        <p data-i18n="p1.contrib">担任项目总负责人，统筹项目立项、研究推进与成果梳理。</p>
+      </div>
+      <div class="pblock">
+        <h3 data-i18n="proj.outcome">成果</h3>
+        <p data-i18n="p1.outcome">项目获市级立项，研究覆盖史料收集、文本对照与译介脉络梳理。</p>
+      </div>
+      <div class="pblock">
+        <h3 data-i18n="proj.skills">相关能力</h3>
+        <div class="tags">
+          <span data-i18n="t.jp">日语能力</span>
+          <span data-i18n="t.trans">翻译研究</span>
+          <span data-i18n="t.lit">文学传播</span>
+          <span data-i18n="t.lead">项目统筹</span>
+        </div>
+      </div>
+      <nav class="proj-nav" aria-label="Project navigation">
+        <a class="next" href="#/project/2">
+          <span data-i18n="proj.next">下一个项目</span>
+          <b data-i18n="p2.short">老年人语言健康智能检测系统</b>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ===== View: Project 2 ===== -->
+  <section class="view" id="view-project-2" data-view="p2">
+    <div class="container">
+      <a class="backlink" href="#/home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+        <span data-i18n="back.home">返回首页</span>
+      </a>
+      <div class="proj-type" data-i18n="p2.type">学院双创项目</div>
+      <h1 class="proj-title" data-i18n="p2.title">老年人语言健康智能检测系统研发与应用</h1>
+      <div class="proj-meta">
+        <span class="chip" data-i18n="p2.role">项目组成员</span>
+        <span class="chip" data-i18n="p2.scope">语言健康 · 智能检测 · 跨学科</span>
+      </div>
+      <div class="proj-rule"></div>
+      <div class="pblock">
+        <h3 data-i18n="proj.overview">项目概述</h3>
+        <p data-i18n="p2.overview">项目面向老年人语言健康场景，研发智能检测系统并探索其应用落地，以语言特征辅助健康评估。</p>
+      </div>
+      <div class="pblock">
+        <h3 data-i18n="proj.contribution">个人角色</h3>
+        <p data-i18n="p2.contrib">作为项目组成员参与系统研发与应用环节，开展跨学科协作。</p>
+      </div>
+      <div class="pblock">
+        <h3 data-i18n="proj.outcome">成果</h3>
+        <p data-i18n="p2.outcome">项目完成系统研发与应用方案设计，进入学院双创项目培育阶段。</p>
+      </div>
+      <div class="pblock">
+        <h3 data-i18n="proj.skills">相关能力</h3>
+        <div class="tags">
+          <span data-i18n="t.health">语言健康</span>
+          <span data-i18n="t.ai">智能检测</span>
+          <span data-i18n="t.cross">跨学科协作</span>
+        </div>
+      </div>
+      <nav class="proj-nav" aria-label="Project navigation">
+        <a href="#/project/1">
+          <span data-i18n="proj.prev">上一个项目</span>
+          <b data-i18n="p1.short">冷战背景下中国儿童文集译介研究</b>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+        </a>
+        <a class="next" href="#/project/3">
+          <span data-i18n="proj.next">下一个项目</span>
+          <b data-i18n="p3.short">中国形象在马来西亚青年中的传播</b>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ===== View: Project 3 ===== -->
+  <section class="view" id="view-project-3" data-view="p3">
+    <div class="container">
+      <a class="backlink" href="#/home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+        <span data-i18n="back.home">返回首页</span>
+      </a>
+      <div class="proj-type" data-i18n="p3.type">2024 校全球挑战计划</div>
+      <h1 class="proj-title" data-i18n="p3.title">新时代中国形象在马来西亚青年群体中的多元传播创新实践</h1>
+      <div class="proj-meta">
+        <span class="chip" data-i18n="p3.role">项目组成员</span>
+        <span class="chip" data-i18n="p3.scope">国际传播 · 跨文化调研</span>
+        <span class="chip">2024</span>
+      </div>
+      <div class="proj-rule"></div>
+      <div class="pblock">
+        <h3 data-i18n="proj.overview">项目概述</h3>
+        <p data-i18n="p3.overview">项目围绕新时代中国形象在马来西亚青年群体中的认知与传播开展创新实践，通过实地调研与传播行动促进中外青年理解。</p>
+      </div>
+      <div class="pblock">
+        <h3 data-i18n="proj.contribution">个人角色</h3>
+        <p data-i18n="p3.contrib">作为项目组成员参与实践，主笔项目新闻稿，刊发于新民晚报、光明日报等主流媒体，累计阅读量超 300 万。</p>
+      </div>
+      <div class="pblock">
+        <h3 data-i18n="proj.outcome">成果</h3>
+        <p data-i18n="p3.outcome">项目新闻稿获主流媒体刊登，实现广泛传播，有效放大项目影响力。</p>
+      </div>
+      <div class="pblock">
+        <h3 data-i18n="proj.skills">相关能力</h3>
+        <div class="tags">
+          <span data-i18n="t.comm">国际传播</span>
+          <span data-i18n="t.news">新闻写作</span>
+          <span data-i18n="t.culture">跨文化交流</span>
+          <span data-i18n="t.media">媒体传播</span>
+        </div>
+      </div>
+      <nav class="proj-nav" aria-label="Project navigation">
+        <a href="#/project/2">
+          <span data-i18n="proj.prev">上一个项目</span>
+          <b data-i18n="p2.short">老年人语言健康智能检测系统</b>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+        </a>
+        <a class="next" href="#/project/4">
+          <span data-i18n="proj.next">下一个项目</span>
+          <b data-i18n="p4.short">中国企业品牌出海与跨文化管理</b>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ===== View: Project 4 ===== -->
+  <section class="view" id="view-project-4" data-view="p4">
+    <div class="container">
+      <a class="backlink" href="#/home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+        <span data-i18n="back.home">返回首页</span>
+      </a>
+      <div class="proj-type" data-i18n="p4.type">2025 校全球挑战计划</div>
+      <h1 class="proj-title" data-i18n="p4.title">新质生产力赋能中国企业品牌出海及跨文化管理困境与对策研究</h1>
+      <div class="proj-meta">
+        <span class="chip" data-i18n="p4.role">捷克实践团团员</span>
+        <span class="chip" data-i18n="p4.scope">品牌出海 · 跨文化管理</span>
+        <span class="chip">2025</span>
+      </div>
+      <div class="proj-rule"></div>
+      <div class="pblock">
+        <h3 data-i18n="proj.overview">项目概述</h3>
+        <p data-i18n="p4.overview">项目关注新质生产力如何赋能中国企业品牌出海，围绕跨文化管理困境与对策展开研究，并赴捷克开展实践调研。</p>
+      </div>
+      <div class="pblock">
+        <h3 data-i18n="proj.contribution">个人角色</h3>
+        <p data-i18n="p4.contrib">作为捷克实践团团员参与海外调研，主笔项目新闻稿，刊发于央视频、光明日报、人民日报等主流媒体，累计阅读量超 500 万。</p>
+      </div>
+      <div class="pblock">
+        <h3 data-i18n="proj.outcome">成果</h3>
+        <p data-i18n="p4.outcome">项目新闻稿获央级与主流媒体刊登，传播覆盖面广，调研成果助力品牌出海议题讨论。</p>
+      </div>
+      <div class="pblock">
+        <h3 data-i18n="proj.skills">相关能力</h3>
+        <div class="tags">
+          <span data-i18n="t.brand">品牌出海</span>
+          <span data-i18n="t.mgmt">跨文化管理</span>
+          <span data-i18n="t.research">国际调研</span>
+          <span data-i18n="t.news">新闻写作</span>
+        </div>
+      </div>
+      <nav class="proj-nav" aria-label="Project navigation">
+        <a href="#/project/3">
+          <span data-i18n="proj.prev">上一个项目</span>
+          <b data-i18n="p3.short">中国形象在马来西亚青年中的传播</b>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+        </a>
+        <a href="#/home">
+          <span data-i18n="proj.backHome">返回首页</span>
+          <b data-i18n="nav.home">首页</b>
+        </a>
+      </nav>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="seal">匡</span>
+      <span class="t" data-i18n="footer.name">陈匡时 · 上海交通大学日语系
+        <small data-i18n="footer.nameEn">Chen Kuangshi · Japanese Dept., SJTU</small>
+      </span>
+    </div>
+    <div class="footer-meta">
+      <div><span data-i18n="footer.contact">联系方式</span>：13661530641</div>
+      <div data-i18n="footer.rights">© 2026 陈匡时 · 由 GitHub Pages 托管</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===== i18n dictionary ===== */
+var L = {
+  zh: {
+    "brand.cn": "陈匡时", "brand.en": "Chen Kuangshi",
+    "lang.toggle": "EN",
+    "nav.home": "首页", "nav.p1": "儿童文集译介", "nav.p2": "语言健康检测",
+    "nav.p3": "马来西亚实践", "nav.p4": "捷克品牌出海",
+    "hero.name": "陈匡时",
+    "hero.photoAlt": "陈匡时证件照",
+    "hero.sub": "上海交通大学 · <b>日语系</b>",
+    "hero.motto": "与有肝胆人共事，从无字句处读书<small>Work with the bold-hearted; read from the unwritten word</small>",
+    "hero.mottoEn": "与有肝胆人共事，从无字句处读书",
+    "hero.go": "浏览我的项目经历",
+    "home.basic": "基本信息", "home.ability": "语言与能力",
+    "home.honors": "荣誉与学生工作", "home.projects": "学术项目经历",
+    "f.name": "姓名", "f.univ": "院校专业", "f.birth": "出生年月",
+    "f.ethnicity": "民族", "f.party": "政治面貌", "f.classRole": "班级职务",
+    "f.schoolRole": "学院职务", "f.phone": "电话",
+    "v.name": "陈匡时（Chen Kuangshi）", "v.univ": "上海交通大学 · 日语系",
+    "v.birth": "2005.4", "v.ethnicity": "汉", "v.party": "预备党员",
+    "v.classRole": "团支部书记", "v.schoolRole": "院级学生会秘书处处长（2025）",
+    "a.n1": "日语 · N1", "a.n1sub": "JLPT N1 证书（双项目评测 A）",
+    "a.jp4": "日语专业四级", "a.jp4sub": "评级「优秀」",
+    "a.ielts": "雅思 8.0", "a.ieltsub": "首考，阅读、听力满分",
+    "a.law": "法学辅修", "a.lawsub": "知识产权法方向",
+    "a.intern": "新华社上海分社", "a.internsub": "实习（2024.12–2025.2）",
+    "h.1": "校优秀学生干部", "h.2": "本科生 C 等优秀奖学金",
+    "h.3": "校新生骨干营成员，个人编导光影剧获骨干营成果展示特等奖",
+    "h.4": "校阳光剧社社长",
+    "h.5": "「李叔同杯」校园戏剧大赛外国语学院连队学生导演，校总剧组工作人员",
+    "h.6": "院级学生会秘书处处长，组织多次劳动教育实践等院级活动",
+    "h.7": "一桥大学、关西学院大学交流项目中方代表",
+    "h.8": "上海交通大学中日青年精英营优秀营员",
+    "h.9": "上海交通大学新时代中日友好团团员",
+    "h.10": "「淬火」入党积极分子培训班组长，评为优秀学员",
+    "back.home": "返回首页",
+    "proj.overview": "项目概述", "proj.contribution": "个人角色",
+    "proj.outcome": "成果", "proj.skills": "相关能力",
+    "proj.prev": "上一个项目", "proj.next": "下一个项目", "proj.backHome": "返回首页",
+    "p1.type": "市级大学生创新项目", "p1.role": "总负责人",
+    "p1.scope": "中日翻译 · 文学传播 · 冷战史",
+    "p1.title": "冷战背景下中国儿童文集在日本的译介研究",
+    "p1.brief": "市级大创项目 · 总负责人", "p1.tag": "中日翻译",
+    "p1.overview": "项目聚焦冷战这一特殊历史时期，系统考察中国儿童文学选集在日本的译介与传播情况。研究以译介学与比较文学为方法，梳理传入日本的儿童文集书目与译本形态，还原其在特定年代进入日本读者视野的路径与渠道，并联系当时的国际关系与文化语境，分析这些文本所承载的时代信息与交流意义。",
+    "p1.contrib": "担任项目总负责人，统筹项目立项论证、成员分工与整体推进，负责研究框架设计与阶段性成果整理，协调史料收集与文本对照工作，确保各环节按计划落地。",
+    "p1.outcome": "项目获市级大学生创新项目立项。研究覆盖书目梳理、译本对照与译介脉络分析，形成系统的调研与结项成果，为相关领域提供了基础性资料。",
+    "p1.short": "中国儿童文集在日本的译介研究",
+    "p2.type": "学院双创项目", "p2.role": "项目组成员",
+    "p2.scope": "语言健康 · 智能检测 · 跨学科",
+    "p2.title": "老年人语言健康智能检测系统研发与应用",
+    "p2.brief": "学院双创项目 · 项目组成员", "p2.tag": "语言健康",
+    "p2.overview": "项目聚焦老龄化背景下老年人语言健康这一现实议题，探索以语言特征为切入点的智能检测方案。研究结合语言学知识与人工智能技术，构建面向老年人语言数据的检测框架，尝试通过语音、语义等维度识别语言能力变化，为早期健康评估提供辅助工具。",
+    "p2.contrib": "作为项目组成员，参与系统研发与需求梳理，围绕语言数据标注、特征分析与功能验证等环节开展跨学科协作，推动技术方案与健康应用场景的有效结合。",
+    "p2.outcome": "项目完成系统研发与应用方案设计，形成阶段性成果，并进入学院双创项目培育阶段，为后续功能完善与场景落地奠定基础。",
+    "p2.short": "老年人语言健康智能检测系统",
+    "p3.type": "2024 校全球挑战计划", "p3.role": "项目组成员",
+    "p3.scope": "国际传播 · 跨文化调研",
+    "p3.title": "新时代中国形象在马来西亚青年群体中的多元传播创新实践",
+    "p3.brief": "2024 校全球挑战计划 · 项目组成员", "p3.tag": "国际传播",
+    "p3.overview": "项目聚焦新时代中国形象在马来西亚青年群体中的认知与传播，围绕文化理解与青年对话开展创新实践。团队赴马来西亚开展实地调研，通过访谈与交流活动了解当地青年的认知状况，并结合媒介传播与青年喜闻乐见的方式策划传播行动，促进中国形象的多元呈现与中外青年间的相互理解。",
+    "p3.contrib": "作为项目组成员深度参与实践全流程，并主笔项目新闻稿。依托扎实的文字功底与媒体素养，将实践成果转化为高质量报道，稿件刊发于新民晚报、光明日报等主流媒体，累计阅读量超 300 万。",
+    "p3.outcome": "项目新闻稿获主流媒体广泛刊登，实现大规模传播，有效提升项目社会影响力，为跨文化传播积累了可借鉴的实践样本。",
+    "p3.short": "中国形象在马来西亚青年中的传播",
+    "p4.type": "2025 校全球挑战计划", "p4.role": "捷克实践团团员",
+    "p4.scope": "品牌出海 · 跨文化管理",
+    "p4.title": "新质生产力赋能中国企业品牌出海及跨文化管理困境与对策研究",
+    "p4.brief": "2025 校全球挑战计划 · 捷克实践团团员", "p4.tag": "品牌出海",
+    "p4.overview": "项目围绕新质生产力赋能中国企业品牌出海这一前沿议题，聚焦品牌国际化过程中的跨文化管理困境。研究结合企业案例与政策语境，梳理中国企业出海面临的文化差异、管理机制与市场沟通等挑战并提出对策；团队赴捷克开展实践调研，通过与当地产业与人文环境的近距离观察，检验并丰富研究视角。",
+    "p4.contrib": "作为捷克实践团团员，全程参与海外调研与案例资料整理，并主笔项目新闻稿，以专业笔触呈现调研成果，稿件刊发于央视频、光明日报、人民日报等主流媒体，累计阅读量超 500 万。",
+    "p4.outcome": "项目新闻稿获央级与主流媒体刊登，传播覆盖面广，调研成果进入公共讨论视野，为企业品牌出海的跨文化管理议题提供了有价值的观察与思考。",
+    "p4.short": "中国企业品牌出海与跨文化管理",
+    "t.jp": "日语能力", "t.trans": "翻译研究", "t.lit": "文学传播", "t.lead": "项目统筹",
+    "t.health": "语言健康", "t.ai": "智能检测", "t.cross": "跨学科协作",
+    "t.comm": "国际传播", "t.news": "新闻写作", "t.culture": "跨文化交流", "t.media": "媒体传播",
+    "t.brand": "品牌出海", "t.mgmt": "跨文化管理", "t.research": "国际调研",
+    "footer.name": "陈匡时 · 上海交通大学日语系<small>Chen Kuangshi · Japanese Dept., SJTU</small>",
+    "footer.contact": "联系方式",
+    "footer.rights": "© 2026 陈匡时 · 由 GitHub Pages 托管",
+    "doc.title": "陈匡时 · 个人主页"
+  },
+  en: {
+    "brand.cn": "陈匡时", "brand.en": "Chen Kuangshi",
+    "lang.toggle": "中文",
+    "nav.home": "Home", "nav.p1": "Children's Anthologies", "nav.p2": "Language Health",
+    "nav.p3": "Malaysia Outreach", "nav.p4": "Czech Branding",
+    "hero.name": "Chen Kuangshi",
+    "hero.photoAlt": "Portrait of Chen Kuangshi",
+    "hero.sub": "Shanghai Jiao Tong University · <b>Japanese Department</b>",
+    "hero.motto": "Work with the bold-hearted; read from the unwritten word<small>与有肝胆人共事，从无字句处读书</small>",
+    "hero.mottoEn": "Work with the bold-hearted; read from the unwritten word",
+    "hero.go": "Explore my projects",
+    "home.basic": "Basic Information", "home.ability": "Languages & Skills",
+    "home.honors": "Honors & Campus Involvement", "home.projects": "Academic Projects",
+    "f.name": "Name", "f.univ": "University & Major", "f.birth": "Date of Birth",
+    "f.ethnicity": "Ethnicity", "f.party": "Political Status", "f.classRole": "Class Role",
+    "f.schoolRole": "School Role", "f.phone": "Phone",
+    "v.name": "Chen Kuangshi (陈匡时)", "v.univ": "Shanghai Jiao Tong University · Japanese Department",
+    "v.birth": "Apr 2005", "v.ethnicity": "Han Chinese", "v.party": "Probationary Party Member",
+    "v.classRole": "Youth League Branch Secretary", "v.schoolRole": "Head of Secretariat, School Student Union (2025)",
+    "a.n1": "Japanese · N1", "a.n1sub": "JLPT N1 Certificate (A rating in both sections)",
+    "a.jp4": "Japanese Major Exam L4", "a.jp4sub": "Rated “Excellent”",
+    "a.ielts": "IELTS 8.0", "a.ieltsub": "First attempt; full marks in Reading & Listening",
+    "a.law": "Law Minor", "a.lawsub": "Intellectual Property Law",
+    "a.intern": "Xinhua News Agency, Shanghai", "a.internsub": "Internship (Dec 2024 – Feb 2025)",
+    "h.1": "Outstanding Student Cadre (University)", "h.2": "Undergraduate C-level Merit Scholarship",
+    "h.3": "Freshman Leadership Camp member; directed a light-and-shadow play winning the Grand Prize at the showcase",
+    "h.4": "President, Sunshine Drama Club",
+    "h.5": "Student director of the Foreign Languages team in the “Li Shutong Cup” Drama Competition; crew member of the main production",
+    "h.6": "Head of Secretariat, School Student Union; organized multiple labor-education practices and school events",
+    "h.7": "Chinese-side representative for Hitotsubashi & Kwansei Gakuin University exchange programs",
+    "h.8": "Outstanding camper, SJTU China–Japan Youth Elite Camp",
+    "h.9": "Member, SJTU New Era China–Japan Friendship Delegation",
+    "h.10": "Group leader of the “Quenching” Party-activist training class; rated Excellent Trainee",
+    "back.home": "Back to Home",
+    "proj.overview": "Overview", "proj.contribution": "My Role",
+    "proj.outcome": "Outcomes", "proj.skills": "Related Skills",
+    "proj.prev": "Previous Project", "proj.next": "Next Project", "proj.backHome": "Back to Home",
+    "p1.type": "Municipal Innovation Program", "p1.role": "Project Lead",
+    "p1.scope": "Translation · Literary Exchange · Cold War History",
+    "p1.title": "Translation and Reception of Chinese Children's Anthologies in Japan in the Cold War Context",
+    "p1.brief": "Municipal Innovation Program · Project Lead", "p1.tag": "JP–CN Translation",
+    "p1.overview": "The project examines the translation and reception of Chinese children's literature anthologies in Japan during the Cold War — a period of tension that nevertheless kept channels of cultural exchange alive. Drawing on translation studies and comparative literature, it surveys which anthologies reached Japan, in what forms they were translated, and through which routes they entered the Japanese reading world. Placing these texts against the geopolitical and cultural context of the era, the study asks what these editions carried, and what literary exchange meant in a divided world.",
+    "p1.contrib": "As project lead, I coordinated the proposal and its rationale, divided the team's work, and drove the project forward. I designed the research framework, managed the collection of historical materials and textual comparison, and consolidated results at each stage to keep every work stream on schedule.",
+    "p1.outcome": "The project received municipal-level funding. Its coverage — cataloguing the anthologies, comparing source and translated texts, and mapping the routes of transmission — produced a systematic body of findings and foundational reference material for the field.",
+    "p1.short": "Children's Anthologies in Japan",
+    "p2.type": "School Innovation Program", "p2.role": "Team Member",
+    "p2.scope": "Language Health · Intelligent Detection · Interdisciplinary",
+    "p2.title": "Development and Application of an Intelligent Detection System for Older Adults' Language Health",
+    "p2.brief": "School Innovation Program · Team Member", "p2.tag": "Language Health",
+    "p2.overview": "Set against the reality of population aging, the project tackles language health among older adults and explores intelligent detection as an entry point. Combining linguistics with AI technology, it builds a detection framework over older adults' language data, identifying changes in language ability through acoustic and semantic dimensions, and aims to serve as a supportive tool for early health assessment.",
+    "p2.contrib": "As a team member, I took part in system development and requirement analysis, working across disciplines on language-data annotation, feature analysis, and function validation, bridging the technical design with real health-care scenarios.",
+    "p2.outcome": "The project completed the system design and application plan, produced working results at each stage, and entered the school innovation program's incubation phase, laying the groundwork for further refinement and real-world deployment.",
+    "p2.short": "Language Health Detection System",
+    "p3.type": "2024 Global Challenge Program", "p3.role": "Team Member",
+    "p3.scope": "Global Communication · Cross-cultural Research",
+    "p3.title": "Innovative Multi-Channel Communication of China's Image among Malaysian Youth in the New Era",
+    "p3.brief": "2024 Global Challenge Program · Team Member", "p3.tag": "Global Communication",
+    "p3.overview": "The project focuses on how China's image is perceived and communicated among Malaysian youth in the new era, centering on cultural understanding and youth dialogue. The team conducted field research in Malaysia — interviews, exchanges, and on-site observation — to gauge local perceptions, then planned communication actions in formats young people respond to, presenting a multi-dimensional picture of China and fostering mutual understanding between Chinese and Malaysian youth.",
+    "p3.contrib": "As a core team member, I took part in the full fieldwork process and authored the project's press releases, drawing on strong writing and media skills to turn the practice into polished coverage. The articles were published by mainstream outlets including Xinmin Evening News and Guangming Daily, accumulating 3 million+ reads.",
+    "p3.outcome": "The press coverage was carried by mainstream media at scale, greatly amplifying the project's social impact and providing a replicable model for cross-cultural communication.",
+    "p3.short": "China Image among Malaysian Youth",
+    "p4.type": "2025 Global Challenge Program", "p4.role": "Czech Team Member",
+    "p4.scope": "Brand Globalization · Cross-cultural Management",
+    "p4.title": "New Quality Productive Forces Empowering Chinese Brands Going Global: Cross-Cultural Management Challenges and Solutions",
+    "p4.brief": "2025 Global Challenge Program · Czech Team Member", "p4.tag": "Brand Globalization",
+    "p4.overview": "The project explores how new quality productive forces empower Chinese brands going global, focusing on the cross-cultural management dilemmas of internationalization. Combining corporate cases and policy context, it maps the cultural differences, management mechanisms, and market-communication challenges Chinese firms face abroad, and proposes targeted responses. The team carried out fieldwork in the Czech Republic, testing and enriching its perspectives through close observation of the local industrial and cultural landscape.",
+    "p4.contrib": "As a member of the Czech practice team, I joined the full overseas research process and helped organize case materials, and authored the project's press releases, presenting the findings with professional writing. The articles were published by CMG Video, Guangming Daily, People's Daily and other mainstream outlets, accumulating 5 million+ reads.",
+    "p4.outcome": "Coverage by central and mainstream media gave the project wide reach; the findings entered public discussion and offered valuable observations on cross-cultural management for Chinese brands expanding overseas.",
+    "p4.short": "Chinese Brands Going Global",
+    "t.jp": "Japanese", "t.trans": "Translation Research", "t.lit": "Literary Communication", "t.lead": "Project Leadership",
+    "t.health": "Language Health", "t.ai": "Intelligent Detection", "t.cross": "Interdisciplinary Collaboration",
+    "t.comm": "Global Communication", "t.news": "News Writing", "t.culture": "Cross-cultural Exchange", "t.media": "Media Outreach",
+    "t.brand": "Brand Globalization", "t.mgmt": "Cross-cultural Management", "t.research": "International Research",
+    "footer.name": "Chen Kuangshi · Japanese Dept., SJTU<small>陈匡时 · 上海交通大学日语系</small>",
+    "footer.contact": "Contact",
+    "footer.rights": "© 2026 Chen Kuangshi · Hosted on GitHub Pages",
+    "doc.title": "Chen Kuangshi · Personal Site"
+  }
+};
+
+/* ===== View router ===== */
+var VIEWS = { home:"view-home", p1:"view-project-1", p2:"view-project-2", p3:"view-project-3", p4:"view-project-4" };
+function parseRoute(){
+  var h = (location.hash || "#/home").split("?")[0];
+  var m = h.match(/^#\/project\/(\d)$/);
+  if(m && VIEWS["p"+m[1]]) return "p"+m[1];
+  if(h.indexOf("#/home") === 0) return "home";
+  return "home";
+}
+function showView(name){
+  var active = VIEWS[name] || "view-home";
+  document.querySelectorAll(".view").forEach(function(v){ v.classList.remove("is-active"); });
+  document.getElementById(active).classList.add("is-active");
+  document.querySelectorAll("nav.menu a").forEach(function(a){
+    a.classList.toggle("active", a.dataset.route === name);
+  });
+  window.scrollTo(0, 0);
+}
+
+/* ===== Language switching ===== */
+var currentLang = "zh";
+function applyLang(lang){
+  var dict = L[lang] || L.zh;
+  document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+  document.querySelectorAll("[data-i18n]").forEach(function(el){
+    var key = el.getAttribute("data-i18n");
+    if(dict[key] !== undefined) el.innerHTML = dict[key];
+  });
+  document.querySelectorAll("[data-i18n-alt]").forEach(function(el){
+    var key = el.getAttribute("data-i18n-alt");
+    if(dict[key] !== undefined) el.setAttribute("alt", dict[key]);
+  });
+  document.title = dict["doc.title"];
+  currentLang = lang;
+  try{ localStorage.setItem("site-lang", lang); }catch(e){}
+  var url = new URL(location.href);
+  if(lang === "zh") url.searchParams.delete("lang"); else url.searchParams.set("lang", lang);
+  var hashClean = (location.hash || "").split("?")[0];
+  history.replaceState(null, "", url.pathname + url.search + hashClean);
+}
+function toggleLang(){ applyLang(currentLang === "zh" ? "en" : "zh"); }
+
+/* ===== Init ===== */
+(function init(){
+  var saved = null;
+  try{ saved = localStorage.getItem("site-lang"); }catch(e){}
+  var q = new URLSearchParams(location.search).get("lang");
+  var hashQ = (location.hash || "").split("?")[1];
+  var hq = hashQ ? new URLSearchParams(hashQ).get("lang") : null;
+  var initial = q === "en" || q === "zh" ? q : (hq === "en" || hq === "zh" ? hq : (saved === "en" || saved === "zh" ? saved : "zh"));
+  applyLang(initial);
+  showView(parseRoute());
+  window.addEventListener("hashchange", function(){ showView(parseRoute()); });
+  document.getElementById("langToggle").addEventListener("click", toggleLang);
+  document.querySelectorAll("nav.menu a, .brand").forEach(function(a){
+    a.addEventListener("click", function(){ showView(parseRoute()); });
+  });
+})();
+</script>
+
+</body>
+</html>
